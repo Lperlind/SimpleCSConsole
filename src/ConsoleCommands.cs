@@ -21,6 +21,7 @@ namespace SimpleCSConsole
             if (commands.ContainsKey(name))
             {
                 Console.WriteLine($"The command {name} already exists!");
+                return;
             }
 
             commands.Add(name, action);
