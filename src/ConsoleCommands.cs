@@ -12,11 +12,17 @@ namespace SimpleCSConsole
         {
             commands = new Dictionary<String, Action<String[]>>();
             AddCommand("help",Help);
+            LoadCommands();
         }
 
         //adds a command to the list of commands
         public static void AddCommand(String name, Action<String[]> action)
         {
+            if (commands.ContainsKey(name))
+            {
+                Console.WriteLine($"The command {name} already exists!");
+            }
+
             commands.Add(name, action);
         }
 
@@ -44,7 +50,7 @@ namespace SimpleCSConsole
         }
 
         //loads all commands in the assembly
-        public static void LoadCommands()
+        private static void LoadCommands()
         {
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             //for all the types in assembly
